@@ -36,7 +36,9 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="DependencySvcGps\IGeoLocation.cs" />
-    <Compile Include="Pages\WhereAmIPage.cs" />
+    <Compile Include="Pages\WhereAmIPage.xaml.cs">
+      <DependentUpon>WhereAmIPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DependencySvcTts\ITextToSpeech.cs" />
     <Compile Include="ViewModel\LocationViewModel.cs" />
@@ -73,4 +75,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\WhereAmIPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

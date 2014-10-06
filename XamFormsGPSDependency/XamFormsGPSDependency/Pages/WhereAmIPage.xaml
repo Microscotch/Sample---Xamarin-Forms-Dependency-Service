@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:local="clr-namespace:XamFormsGPSDependency.ViewModel;assembly=XamFormsGPSDependency"
+    x:Class="XamFormsGPSDependency.Pages.WhereAmIPage"
+    Title="Where Am I?">
+    <ContentPage.BindingContext>
+        <local:LocationViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+         Spacing="5" Orientation="Vertical">
+            <StackLayout.Padding>
+            <OnPlatform x:TypeArguments="Thickness"
+              iOS="10, 0, 10, 10"
+              Android="10, 0, 10, 10"
+              WinPhone="10, 0, 10, 10"/>
+            </StackLayout.Padding>
+            <Button Text="Let's Find Out" HorizontalOptions="Center" Clicked="btnGo_Clicked"/>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="gps.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="tap_GPS"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout Spacing="0">
+                    <Label HorizontalOptions="FillAndExpand"
+                    Text="GPS Location" TextColor="Red">
+                        <Label.Font>
+                        <OnPlatform x:TypeArguments="Font"
+                          iOS="GillSans-Light, 16"
+                          Android="Droid Sans, 16"
+                          WinPhone="Segoe UI, 18"/>
+                        </Label.Font>
+                    </Label>
+                    <Label HorizontalOptions="FillAndExpand"
+                    TextColor="Gray" Text="{Binding DisplayLocation}">
+                        <Label.Font>
+                        <OnPlatform x:TypeArguments="Font"
+                          iOS="GillSans-Light, 12"
+                          Android="Droid Sans Mono, 14"
+                          WinPhone="Segoe UI, 14"/>
+                        </Label.Font>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="address.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="tap_Addr"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout Spacing="0">
+                    <Label HorizontalOptions="FillAndExpand"
+                    Text="Address" TextColor="Red">
+                        <Label.Font>
+                        <OnPlatform x:TypeArguments="Font"
+                          iOS="GillSans-Light, 16"
+                          Android="Droid Sans, 16"
+                          WinPhone="Segoe UI, 18"/>
+                        </Label.Font>
+                    </Label>
+                    <Label HorizontalOptions="FillAndExpand"
+                    Text="{Binding Address}" TextColor="Gray">
+                        <Label.Font>
+                        <OnPlatform x:TypeArguments="Font"
+                          iOS="GillSans-Light, 12"
+                          Android="Droid Sans Mono, 14"
+                          WinPhone="Segoe UI, 14"/>
+                        </Label.Font>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+            <Frame Padding="1" VerticalOptions="FillAndExpand">
+                <maps:Map VerticalOptions="FillAndExpand" x:Name="map"/>
+            </Frame>
+            <Slider Value="9" Maximum="18.0" ValueChanged="slider_ValueChanged"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
